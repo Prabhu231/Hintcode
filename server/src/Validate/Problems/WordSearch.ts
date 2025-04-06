@@ -66,12 +66,12 @@ const runTestsForWordSearch = async (cppFunction: string) => {
 
       if ((output == 'true' && expected) || (output == 'false' && !expected)) {
         // console.log(
-          `✅ Test ${i + 1} Passed! Input: board=[${testCase.input.board.map(row => `[${row.join(", ")}]`).join(", ")}], word="${testCase.input.word}" → Output: ${output}`
-        );
+        //  `✅ Test ${i + 1} Passed! Input: board=[${testCase.input.board.map(row => `[${row.join(", ")}]`).join(", ")}], word="${testCase.input.word}" → Output: ${output}`
+        // );
       } else {
         // console.error(
-          `❌ Test ${i + 1} Failed! Input: board=[${testCase.input.board.map(row => `[${row.join(", ")}]`).join(", ")}], word="${testCase.input.word}" → Expected: ${expected}, but got: ${output}`
-        );
+        //  `❌ Test ${i + 1} Failed! Input: board=[${testCase.input.board.map(row => `[${row.join(", ")}]`).join(", ")}], word="${testCase.input.word}" → Expected: ${expected}, but got: ${output}`
+        // );
         return { success: false, failedTestCase: `board=[${testCase.input.board.map(row => `[${row.join(", ")}]`).join(", ")}], word="${testCase.input.word}"` };
       }
     }

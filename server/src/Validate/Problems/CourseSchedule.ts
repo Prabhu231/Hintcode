@@ -72,16 +72,16 @@ const runTestsForCourseSchedule = async (cppFunction: string) => {
 
             if (output === expected) {
                 // console.log(
-                    `✅ Test ${i + 1} Passed! Input: numCourses=${testCase.input.numCourses}, prerequisites=${JSON.stringify(
-                        testCase.input.prerequisites
-                    )} → Output: ${output}`
-                );
+                //    `✅ Test ${i + 1} Passed! Input: numCourses=${testCase.input.numCourses}, prerequisites=${JSON.stringify(
+                //        testCase.input.prerequisites
+                //    )} → Output: ${output}`
+                // );
             } else {
                 // console.error(
-                    `❌ Test ${i + 1} Failed! Input: numCourses=${testCase.input.numCourses}, prerequisites=${JSON.stringify(
-                        testCase.input.prerequisites
-                    )} → Expected: ${expected}, but got: ${output}`
-                );
+                //    `❌ Test ${i + 1} Failed! Input: numCourses=${testCase.input.numCourses}, prerequisites=${JSON.stringify(
+                //        testCase.input.prerequisites
+                //    )} → Expected: ${expected}, but got: ${output}`
+                // );
                 return {
                     success: false,
                     failedTestCase: `numCourses=${testCase.input.numCourses}, prerequisites=${JSON.stringify(

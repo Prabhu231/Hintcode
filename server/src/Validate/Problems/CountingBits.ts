@@ -63,12 +63,12 @@ const runTestsForCountingBits = async (cppFunction: string) => {
 
       if (JSON.stringify(output) === JSON.stringify(expected)) {
         // console.log(
-          `✅ Test ${i + 1} Passed! Input: n=${testCase.input.n} → Output: ${output}`
-        );
+        //  `✅ Test ${i + 1} Passed! Input: n=${testCase.input.n} → Output: ${output}`
+        // );
       } else {
         // console.error(
-          `❌ Test ${i + 1} Failed! Input: n=${testCase.input.n} → Expected: ${expected}, but got: ${output}`
-        );
+        //  `❌ Test ${i + 1} Failed! Input: n=${testCase.input.n} → Expected: ${expected}, but got: ${output}`
+        // );
         return { success: false, failedTestCase: `n = ${testCase.input.n}` };
       }
     }

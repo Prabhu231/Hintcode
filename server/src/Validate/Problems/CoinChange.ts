@@ -62,12 +62,12 @@ const runTestsForCoinChange = async (cppFunction: string) => {
 
       if (output === expected) {
         // console.log(
-          `✅ Test ${i + 1} Passed! Input: coins=${testCase.input.coins}, amount=${testCase.input.amount} → Output: ${output}`
-        );
+        //  `✅ Test ${i + 1} Passed! Input: coins=${testCase.input.coins}, amount=${testCase.input.amount} → Output: ${output}`
+        // );
       } else {
         // console.error(
-          `❌ Test ${i + 1} Failed! Input: coins=${testCase.input.coins}, amount=${testCase.input.amount} → Expected: ${expected}, but got: ${output}`
-        );
+        //  `❌ Test ${i + 1} Failed! Input: coins=${testCase.input.coins}, amount=${testCase.input.amount} → Expected: ${expected}, but got: ${output}`
+        // );
         return { success: false, failedTestCase: `coins = [${testCase.input.coins.join(',')}] amt = ${testCase.input.amount}` };
       }
     }

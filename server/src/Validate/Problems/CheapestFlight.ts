@@ -73,12 +73,12 @@ const runTestsForCheapestFlight = async (cppFunction: string) => {
 
       if (output === expected) {
         // console.log(
-          `✅ Test ${i + 1} Passed! n=${testCase.input.n}, src=${testCase.input.src}, dst=${testCase.input.dst}, k=${testCase.input.k} → Output: ${output}`
-        );
+        //  `✅ Test ${i + 1} Passed! n=${testCase.input.n}, src=${testCase.input.src}, dst=${testCase.input.dst}, k=${testCase.input.k} → Output: ${output}`
+        // );
       } else {
         // console.error(
-          `❌ Test ${i + 1} Failed! n=${testCase.input.n}, src=${testCase.input.src}, dst=${testCase.input.dst}, k=${testCase.input.k} → Expected: ${expected}, but got: ${output}`
-        );
+        //  `❌ Test ${i + 1} Failed! n=${testCase.input.n}, src=${testCase.input.src}, dst=${testCase.input.dst}, k=${testCase.input.k} → Expected: ${expected}, but got: ${output}`
+        // );
         return { success: false, failedTestCase: `n=${testCase.input.n}, src=${testCase.input.src}, dst=${testCase.input.dst}, k=${testCase.input.k} flights = [${testCase.input.flights.join(',')}]` };
       }
     }

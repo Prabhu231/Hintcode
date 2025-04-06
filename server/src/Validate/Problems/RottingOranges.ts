@@ -79,7 +79,7 @@ const runTestsForRottingOranges = async (cppFunction: string) => {
         // console.log(`✅ Test ${i + 1} Passed! Output: ${output}`);
       } else {
         // console.error(`❌ Test ${i + 1} Failed! Expected: ${expected}, Got: ${output}`);
-        return { success: false, failedTestCase: testCase.input.grid };
+        return { success: false, failedTestCase: `[${testCase.input.grid.map(row => `[${row.join(',')}]`).join(',')}]` };
       }
     }
 
