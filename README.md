@@ -60,14 +60,14 @@ npm install
 npm start
 ```
 
-### 4. Server - Open a new terminal
+### 4. Server
 ```bash
 cd server
 npm install
 npm run dev
 ```
 
-### 4. Insert Testcases - Open a new terminal
+### 4. Insert Testcases
 ```bash
 cd server
 npm run insert_data
