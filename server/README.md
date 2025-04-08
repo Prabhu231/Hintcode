@@ -28,5 +28,7 @@ The backend service for **Hintcode**, a smart C++ solution evaluator. It handles
 ```bash
 cd backend
 npm install
+# Ensure Redis is running
+npm run worker
 npm run dev
 ```
