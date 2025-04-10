@@ -39,7 +39,7 @@ https://www.hintcode.in
 
 - [Node.js](https://nodejs.org/)
 - [MongoDB](https://www.mongodb.com/)
-- [Redis](https://redis.io/) (local or via Docker)
+- [Redis](https://redis.io/)
 - `g++` installed and accessible in your system's PATH
 
 ---
