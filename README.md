@@ -6,6 +6,9 @@ https://www.hintcode.in
 
 ---
 
+![image](https://github.com/user-attachments/assets/33a3b849-48dc-4311-8a4f-a142febbde65)
+
+
 ## 🧠 Features
 
 - 📚 50+ curated DSA problems (Graphs, Dynamic Programming, Arrays, etc.)
