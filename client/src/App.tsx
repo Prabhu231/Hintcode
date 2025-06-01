@@ -1,3 +1,4 @@
+import React from 'react'; 
 import Problem from './pages/Problems';
 import Home from './pages/Homepage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';

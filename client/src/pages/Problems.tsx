@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Editor } from "@monaco-editor/react";
@@ -10,8 +11,9 @@ import {
     Typography,
     Alert,
     IconButton,
+    Snackbar,
 } from "@mui/material";
-import { Fullscreen, FullscreenExit } from "@mui/icons-material";
+import { Fullscreen, FullscreenExit, Home } from "@mui/icons-material";
 
 const maxPollAttempts = parseInt(process.env.REACT_APP_MAX_POLL_ATTEMPTS as string);
 
@@ -41,6 +43,7 @@ export default function Problem() {
     const [bestCaseComplexity, setBestCaseComplexity] = useState<string>("");
     const [sampleTestcases, setSampleTestcases] = useState<string>("");
     const [editorFullscreen, setEditorFullscreen] = useState<boolean>(false);
+    const [demoAlertOpen, setDemoAlertOpen] = useState<boolean>(false);
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -48,8 +51,85 @@ export default function Problem() {
             try {
                 setIsLoading(true);
                 const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/problem/${id}`);
+
                 setProblemDetails(response.data.description);
-                setCode(response.data.code);
+                const problemId = parseInt(id ? id : '0');
+                
+                // Check if this is a demo problem
+                if(problemId === 46 || problemId === 47) {
+                    setDemoAlertOpen(true);
+                    setTimeout(() => setDemoAlertOpen(false), 3000);
+                }
+                
+                if(problemId === 46) {
+                    setCode(`
+int networkDelayTime(vector<vector<int>> times, int n, int k) {
+        vector<pair<int,int>> adj[n + 1];
+        for(auto it : times){
+            int u = it[0];
+            int v = it[1];
+            int wt = it[2];
+            adj[u].push_back({v, wt});
+        }
+
+        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
+        pq.push({0 , k});
+
+        vector<int> dist(n+1 , INT_MAX);
+        dist[k] = 0;
+
+        while(!pq.empty()){
+            int time = pq.top().first;
+            int node = pq.top().second;
+            pq.pop();
+
+            for(auto it : adj[node]){
+                int neighbourNode = it.first;
+                int wt = it.second;
+
+                if(time + wt < dist[neighbourNode]){
+                    dist[neighbourNode] = time + wt;
+                    pq.push({dist[neighbourNode] , neighbourNode });
+                }
+            }  
+        }
+
+        int mx = *max_element(dist.begin()+1 , dist.end() );
+        return mx == INT_MAX ? -1 : mx;
+}
+                        `)
+                } else if(problemId === 47) {
+                    setCode(`
+#define ll long long
+
+bool canFinish(int n, vector<vector<int>>& req) {
+        vector<ll> deg(n,0);
+        vector<vector<ll>> graph(n);
+        for(auto &p: req) {
+            graph[p[0]].push_back(p[1]);
+            deg[p[1]]++;
+        }
+        queue<ll> q;
+        for(ll i=0;i<n;i++) {
+            if(deg[i] == 0) q.push(i);
+        }
+        ll ans = 0;
+        while(!q.empty()) {
+            ll curr = q.front();
+            q.pop();
+            ans++;
+            for(ll &i: graph[curr]) {
+                deg[i]--;
+                if(deg[i] == 0) q.push(i);
+            }
+        }
+        return ans == n;
+    }`)
+                }
+                else {
+                    setCode(response.data.code);
+                }
+                
                 setBestCaseComplexity(response.data.bestCaseComplexity);
                 setSampleTestcases(response.data.sampleTestcases);
             } catch (error) {
@@ -183,15 +263,41 @@ export default function Problem() {
 
     return (
         <Box sx={{ p: 4, height: "100vh", overflow: "hidden", width: "100vw" }}>
-            <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-                <Button
-                    variant="outlined"
-                    sx={{ mr: 2 }}
-                    disabled={parseInt(id as string) <= 1}
-                    onClick={() => navigate(`/problem/${parseInt(id as string) - 1}`)}
+            {/* Demo Alert Snackbar */}
+            <Snackbar
+                open={demoAlertOpen}
+                autoHideDuration={3000}
+                onClose={() => setDemoAlertOpen(false)}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            >
+                <Alert 
+                    severity="info" 
+                    variant="filled" 
+                    elevation={6}
+                    sx={{ width: '100%' }}
                 >
-                    &larr; Previous 
-                </Button>
+                    Demo code loaded for Problem {id}
+                </Alert>
+            </Snackbar>
+
+            <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+                <Box display="flex" gap={2}>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        startIcon={<Home />}
+                        onClick={() => navigate("/")}
+                    >
+                        Go Back
+                    </Button>
+                    <Button
+                        variant="outlined"
+                        disabled={parseInt(id as string) <= 1}
+                        onClick={() => navigate(`/problem/${parseInt(id as string) - 1}`)}
+                    >
+                        &larr; Previous 
+                    </Button>
+                </Box>
                 <Typography variant="h4" fontWeight={600}>
                     Problem {id}
                 </Typography>
