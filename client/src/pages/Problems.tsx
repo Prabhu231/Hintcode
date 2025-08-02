@@ -321,7 +321,7 @@ export default function Problem() {
 
                     {hint && (
                         <Alert severity="info" sx={{ mt: 3 }}>
-                            <Typography variant="body2">💡 {hint}</Typography>
+                            <Typography variant="body2">{hint}</Typography>
                         </Alert>
                     )}
                 </Paper>
