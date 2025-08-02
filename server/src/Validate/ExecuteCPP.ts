@@ -18,7 +18,7 @@ export const executeCpp = async (cppCode: string): Promise<string> => {
 
     return new Promise((resolve, reject) => {
 
-        exec(`g++ ${filePath} -o ${exePath}`, (compileError, _, stderr) => {
+        exec(`sudo g++ ${filePath} -o ${exePath}`, (compileError, _, stderr) => {
             if (compileError) {
                 reject(`Compilation Error:\n${stderr}`);
                 return
