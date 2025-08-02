@@ -56,7 +56,7 @@ const runTestsForMinWindowSubstring = async (cppFunction: string) => {
     // Validate results
     for (let i = 0; i < testCases.length; i++) {
       const testCase = testCases[i];
-      const output = outputs[i].trim();
+      const output = outputs[i] ? outputs[i].trim() : "";;
       const expected = testCase.expected_output;
 
       if (output === expected) {
