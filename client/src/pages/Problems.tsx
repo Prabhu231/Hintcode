@@ -52,6 +52,7 @@ export default function Problem() {
                 setIsLoading(true);
                 const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/problem/${id}`);
 
+                setCode(response.data.code);
                 setProblemDetails(response.data.description);                
                 setBestCaseComplexity(response.data.bestCaseComplexity);
                 setSampleTestcases(response.data.sampleTestcases);
